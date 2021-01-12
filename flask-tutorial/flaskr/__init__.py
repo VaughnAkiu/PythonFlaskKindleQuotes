@@ -29,8 +29,16 @@ def create_app(test_config=None):
     def hello():
         return 'ello puppet'
 
+
     #a simple page that says something else
     @app.route('/unlimited')
     def unlimited():
         return 'UNLIMITED POWA'
+
+
+    #Register with the application
+    from . import db
+    db.init_app(app)
+
+        
     return app    
