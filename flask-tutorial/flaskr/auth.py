@@ -75,3 +75,11 @@ def register():
             g.user = get_db().execute(
                 'SELECT * FROM user WHERE id = ?', (user_id,)
             ).fetchone()
+
+
+    @bp.route('/logout')
+    def logout():
+        session.clear()
+        return redirect(url_for('index'))
+
+    
