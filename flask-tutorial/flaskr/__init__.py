@@ -43,5 +43,11 @@ def create_app(test_config=None):
     #import and register the blueprint from factory
     from . import auth
     app.register_blueprint(auth.bp)
+
+    #import and register blueprint
+    from . import blog
+    app.register_blueprint(blog.bp)
+    app.add_url_rule('/', endpoint='index')
+    
         
     return app    
