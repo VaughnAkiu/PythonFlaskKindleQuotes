@@ -7,4 +7,16 @@ from app import app
 @app.route('/')         #decorator (modifies the function that follows)
 @app.route('/index')    #decorator
 def index():
-    return "hello, hellooooooooo"
+    user = {'username' : 'Miguel'}
+    return ''' 
+<html>
+    <head>
+        <title>Home Page - Microblog</title>
+    </head>
+    <body>
+        <h1>Hello, ''' + user['username'] + '''!</h1>
+    </body>
+</html>'''  
+
+
+
