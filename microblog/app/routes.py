@@ -8,7 +8,18 @@ from app import app
 @app.route('/index')    #decorator
 def index():
     user = {'username' : 'Miguel'}
-    return render_template('index.html', title='Home', user=user) #takes template filename, variable list of template arguments, returns that template with placeholder now with actual values
+    posts = [
+        {
+            'author': {'username': 'John'},
+            'body': 'Beautiful day in Portland!'
+        },
+        {
+            'author': {'username': 'Susan'},
+            'body': 'The Avengers movie was so cool!'
+        }
+    ]
+
+    return render_template('index.html', title='Home', user=user, posts=posts) #takes template filename, variable list of template arguments, returns that template with placeholder now with actual values
 
 
 
