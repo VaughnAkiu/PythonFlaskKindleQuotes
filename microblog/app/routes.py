@@ -1,10 +1,11 @@
 #routes are different URLs which the application implements
 #handlers for these routes written as Python functions are called view functions
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from app import app
 from app.forms import LoginForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
+from werkzeug.urls import url_parse
 
 #these two decorators translates to when a WEb browser requests, / or /index, the function will pass index(), which returns hello,... etc
 @app.route('/')         #decorator (modifies the function that follows)
@@ -36,8 +37,10 @@ def login():
             flash('Invalid username or password')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
-        return redirect(url_for('index'))
-    return render_template('login.html', title='Sign In', form=form)
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('index')
+        return redirect(next_page)
 
 
     @app.route('/logout')
