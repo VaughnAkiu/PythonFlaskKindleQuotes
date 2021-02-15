@@ -3,12 +3,13 @@
 from flask import render_template, flash, redirect, url_for
 from app import app
 from app.forms import LoginForm
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 
 #these two decorators translates to when a WEb browser requests, / or /index, the function will pass index(), which returns hello,... etc
 @app.route('/')         #decorator (modifies the function that follows)
 @app.route('/index')    #decorator
+@login_required
 def index():
     user = {'username' : 'Miguel'}
     posts = [
