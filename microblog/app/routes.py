@@ -24,7 +24,7 @@ def index():
         }
     ]
 
-    return render_template('index.html', title='Home', user=user, posts=posts) #takes template filename, variable list of template arguments, returns that template with placeholder now with actual values
+    return render_template("index.html", title='Home Page', posts=posts) #takes template filename, variable list of template arguments, returns that template with placeholder now with actual values
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
